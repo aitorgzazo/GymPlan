@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panel de recomposición</title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Recomp" />
+<meta name="theme-color" content="#090B11" />
+<link rel="apple-touch-icon" href="data:image/png;base64,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" />
+<link rel="icon" href="data:image/png;base64,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" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#090B11;--surface:#12151E;--surface-2:#171C27;--line:#242A3A;--line-soft:#1B2130;
+    --text:#EDF1F7;--muted:#868FA2;--muted-dim:#5A6274;
+    --blue:#3E82FF;--blue-bright:#6EA8FF;--blue-deep:#132542;--blue-glow:rgba(62,130,255,.22);
+    --r-lg:16px;--r-md:12px;--r-sm:9px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;padding:env(safe-area-inset-top) 0 calc(64px + env(safe-area-inset-bottom));overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(680px 380px at 82% -6%, rgba(62,130,255,.16), transparent 70%),radial-gradient(560px 420px at -12% 8%, rgba(62,130,255,.08), transparent 70%)}
+  .wrap{position:relative;z-index:1;max-width:600px;margin:0 auto;padding:0 16px}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-bright);font-weight:500}
+
+  header{padding:34px 0 20px}
+  .kicker{display:flex;align-items:center;gap:9px;margin-bottom:14px}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 12px 2px var(--blue-glow)}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,8.5vw,42px);line-height:1.02;letter-spacing:-.02em}
+  h1 .b{color:var(--blue)}
+  .sub{color:var(--muted);font-size:14px;margin-top:10px;max-width:44ch}
+  .stats{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+  .chip{font-family:'JetBrains Mono',monospace;font-size:11.5px;border:1px solid var(--line);border-radius:var(--r-sm);padding:6px 10px;color:var(--text);background:var(--surface);display:flex;gap:6px;align-items:baseline}
+  .chip b{color:var(--blue-bright);font-weight:700}
+  .chip.goal{border-color:var(--blue-deep);background:linear-gradient(180deg,rgba(62,130,255,.12),rgba(62,130,255,.03))}
+
+  nav.tabs{position:sticky;top:env(safe-area-inset-top);z-index:20;margin:22px 0 6px;padding:8px 0 10px;background:linear-gradient(180deg,var(--bg) 70%,rgba(9,11,17,0))}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:4px}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--muted);cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;padding:10px 4px;border-radius:10px;transition:color .18s,background .18s;letter-spacing:.01em}
+  .seg button[aria-selected="true"]{color:#fff;background:var(--blue);box-shadow:0 4px 16px -4px var(--blue-glow)}
+  .seg button:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px}
+
+  .panel{display:none;padding-top:12px;animation:fade .32s ease}
+  .panel.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;margin-bottom:14px}
+  .card h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .card h2 .idx{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--blue);border:1px solid var(--blue-deep);border-radius:7px;padding:3px 7px;font-weight:700;line-height:1}
+  .card > p.lead{color:var(--muted);font-size:13.5px;margin-top:8px}
+  .card > p.lead b{color:var(--text);font-weight:600}
+
+  .freq{display:flex;gap:8px;margin:16px 0 4px}
+  .freq button{flex:1;appearance:none;cursor:pointer;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 4px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px;line-height:1;transition:.16s}
+  .freq button small{display:block;font-family:'Inter';font-weight:500;font-size:10.5px;letter-spacing:.02em;margin-top:6px;color:var(--muted-dim)}
+  .freq button.active{border-color:var(--blue);color:#fff;background:var(--blue-deep)}
+  .freq button.active small{color:var(--blue-bright)}
+  .freq button:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px}
+
+  .weekstrip{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+  .day-pill{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:7px 12px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--surface-2);line-height:1}
+  .day-pill.on{color:#fff;border-color:var(--blue-deep);background:linear-gradient(180deg,rgba(62,130,255,.18),rgba(62,130,255,.05))}
+  .day-pill.rest{color:var(--muted-dim)}
+  .note{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+  .note b{color:var(--text);font-weight:600}
+
+  /* accordion */
+  .acc{border:1px solid var(--line);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;background:var(--surface-2)}
+  .acc summary{list-style:none}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc-head{width:100%;appearance:none;border:0;background:transparent;cursor:pointer;color:var(--text);display:flex;align-items:center;gap:12px;padding:13px 14px;text-align:left}
+  .acc-head:focus-visible{outline:2px solid var(--blue-bright);outline-offset:-2px}
+  .acc-head .tag{font-family:'Space Grotesk';font-weight:700;font-size:15px;flex:1;min-width:0}
+  .acc-head .tag em{display:block;font-style:normal;font-family:'Inter';font-weight:400;font-size:11.5px;color:var(--muted);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ring{width:34px;height:34px;flex:0 0 34px}
+  .ring text{font-family:'JetBrains Mono';font-size:11px;font-weight:700;fill:var(--muted)}
+  .chev{width:18px;height:18px;color:var(--muted);transition:transform .25s;flex:0 0 18px}
+  .acc[open] .chev{transform:rotate(180deg);color:var(--blue-bright)}
+  .acc-body{padding:0 12px 6px}
+
+  .ex{padding:13px 2px;border-top:1px solid var(--line-soft)}
+  .ex:first-child{border-top:0}
+  .ex-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .tick{flex:0 0 22px;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;transition:.15s;padding:0;appearance:none}
+  .tick svg{width:13px;height:13px;color:#fff;opacity:0;transform:scale(.6);transition:.15s}
+  .tick[aria-pressed="true"]{background:var(--blue);border-color:var(--blue)}
+  .tick[aria-pressed="true"] svg{opacity:1;transform:scale(1)}
+  .tick:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px}
+  .ex-name{flex:1;font-size:14px;min-width:0}
+  .ex-name em{display:block;font-style:normal;font-size:11.5px;color:var(--muted-dim);margin-top:1px}
+  .ex-load{font-family:'JetBrains Mono';font-size:12.5px;font-weight:700;color:var(--blue-bright);white-space:nowrap}
+  .done .ex-name > span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted-dim)}
+
+  .ex-log{display:flex;align-items:center;gap:8px;padding-left:34px}
+  .win{display:flex;align-items:center;gap:5px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:0 10px;height:34px;flex:0 0 auto}
+  .win:focus-within{border-color:var(--blue)}
+  .win input{width:46px;background:transparent;border:0;color:#fff;font-family:'JetBrains Mono';font-weight:700;font-size:14.5px;text-align:right;outline:none;-moz-appearance:textfield}
+  .win input::-webkit-outer-spin-button,.win input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .win input::placeholder{color:var(--muted-dim);font-weight:400}
+  .win span{font-size:11px;color:var(--muted-dim);font-family:'JetBrains Mono'}
+  .logbtn{appearance:none;border:1px solid var(--blue-deep);background:var(--blue-deep);color:var(--blue-bright);border-radius:var(--r-sm);height:34px;padding:0 12px;font-family:'JetBrains Mono';font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.05em;transition:.14s;flex:0 0 auto}
+  .logbtn:active{background:var(--blue);color:#fff}
+  .logbtn:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px}
+  .hist{display:flex;gap:5px;align-items:center;flex-wrap:wrap;min-width:0;overflow:hidden}
+  .hist .lab{font-size:9.5px;color:var(--muted-dim);font-family:'JetBrains Mono';text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+  .hist .h{font-family:'JetBrains Mono';font-size:11px;font-weight:700;color:var(--muted);background:var(--line-soft);border-radius:6px;padding:3px 7px;line-height:1.3}
+  .hist .h.last{color:var(--blue-bright);background:var(--blue-deep)}
+
+  /* diet console */
+  .console{background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--line);border-radius:var(--r-md);padding:16px;margin:14px 0}
+  .readout{display:flex;justify-content:space-between;align-items:flex-end;gap:14px}
+  .rlabel{display:block;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-dim);margin-bottom:3px}
+  .liverow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;padding-top:13px;border-top:1px solid var(--line)}
+  .lv b{font-family:'JetBrains Mono';font-weight:700;font-size:21px;color:#fff;line-height:1.1}
+  .delta{font-family:'JetBrains Mono';font-size:12px;font-weight:700;border-radius:8px;padding:6px 10px;white-space:nowrap;flex:0 0 auto}
+  .delta.ok{color:var(--blue-bright);background:var(--blue-deep);border:1px solid var(--blue-deep)}
+  .delta.over{color:#FFB35C;background:rgba(255,179,92,.10);border:1px solid rgba(255,179,92,.35)}
+  .delta.under{color:var(--muted);background:var(--line-soft);border:1px solid var(--line)}
+  .mlabel{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-dim);margin:16px 0 10px}
+  .kcal{font-family:'JetBrains Mono';font-weight:700;font-size:38px;line-height:1;letter-spacing:-.02em}
+  .kcal small{font-size:13px;color:var(--muted);font-weight:500;margin-left:4px}
+  .loss{text-align:right;flex:0 0 auto}
+  .loss b{font-family:'JetBrains Mono';font-weight:700;font-size:19px;color:var(--blue-bright);display:block;line-height:1.2}
+  .loss span{font-size:10.5px;color:var(--muted);letter-spacing:.02em}
+  .sliderrow{margin-top:18px}
+  .sliderrow label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:10px}
+  .sliderrow label b{font-family:'JetBrains Mono';color:var(--text)}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--blue) var(--fill,62%),var(--line) var(--fill,62%));outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;cursor:pointer;border:3px solid var(--blue);box-shadow:0 0 0 4px var(--blue-glow)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;cursor:pointer;border:3px solid var(--blue);box-shadow:0 0 0 4px var(--blue-glow)}
+  input[type=range]:focus-visible{outline:2px solid var(--blue-bright);outline-offset:4px}
+  .rangecap{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted-dim);margin-top:8px;font-family:'JetBrains Mono'}
+  .macros{display:flex;align-items:center;gap:20px;margin-top:4px}
+  .donut{flex:0 0 112px;width:112px;height:112px}
+  .mlist{flex:1;display:flex;flex-direction:column;gap:12px;min-width:0}
+  .m{display:flex;align-items:center;gap:10px}
+  .m .sw{width:11px;height:11px;border-radius:3px;flex:0 0 11px}
+  .m .lbl{flex:1;font-size:13px}
+  .m .g{font-family:'JetBrains Mono';font-weight:700;font-size:15px;white-space:nowrap}
+  .m .pct{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);width:38px;text-align:right;flex:0 0 38px}
+
+  /* meal cards */
+  .shift{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;margin:14px 0}
+  .shift .sl{font-size:13px}
+  .shift .sl b{display:block;font-family:'Space Grotesk';font-size:14px}
+  .shift .sl span{color:var(--muted);font-size:11.5px}
+  .switch{position:relative;flex:0 0 52px;width:52px;height:30px;border-radius:99px;background:var(--line);border:0;cursor:pointer;transition:.2s;appearance:none}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}
+  .switch[aria-checked="true"]{background:var(--blue)}
+  .switch[aria-checked="true"]::after{transform:translateX(22px)}
+  .switch:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px}
+
+  .meal2{border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface-2);margin-bottom:11px;overflow:hidden;transition:order .2s}
+  .meal2 .mh{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line-soft)}
+  .meal2 .mtime{font-family:'JetBrains Mono';font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-bright);background:var(--blue-deep);border-radius:6px;padding:4px 8px;line-height:1;flex:0 0 auto;min-width:74px;text-align:center}
+  .meal2 .mtitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;flex:1;min-width:0}
+  .meal2 .mtitle em{display:block;font-style:normal;font-family:'Inter';font-weight:400;font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.45}
+  .meal2.moved{border-color:var(--blue)}
+  .meal2 .movedtag{font-family:'JetBrains Mono';font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-bright);border:1px solid var(--blue-deep);border-radius:6px;padding:3px 7px;flex:0 0 auto;align-self:flex-start}
+  .shift .sl b{transition:color .2s}
+  .meal2 .food{padding:10px 14px 11px}
+  .meal2 .food ul{list-style:none}
+  .meal2 .food li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13.5px;padding:4px 0}
+  .meal2 .food li .q{font-family:'JetBrains Mono';font-weight:700;color:var(--text);white-space:nowrap;font-size:13px}
+  .meal2 .food li .q.flex{color:var(--blue-bright)}
+  .meal2 .macbar{display:grid;grid-template-columns:1fr auto auto auto;gap:14px;padding:9px 14px;background:rgba(62,130,255,.05);border-top:1px solid var(--line-soft);font-family:'JetBrains Mono';font-size:11.5px;color:var(--muted);align-items:baseline}
+  .meal2 .macbar b{color:var(--blue-bright)}
+  .tbadge{font-family:'JetBrains Mono';font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border-radius:5px;padding:2px 6px;vertical-align:middle;margin-left:2px}
+  .tbadge.dulce{color:#6EA8FF;background:var(--blue-deep);border:1px solid var(--blue-deep)}
+  .tbadge.salada{color:var(--muted);background:var(--line-soft);border:1px solid var(--line)}
+  .saveflag{display:inline-block;font-family:'JetBrains Mono';font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--blue-bright);background:var(--blue-deep);border-radius:6px;padding:3px 8px;margin-right:8px;opacity:0;transform:translateY(3px);transition:.2s}
+  .saveflag.show{opacity:1;transform:none}
+  .verbadge{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-bright);border:1px solid var(--blue-deep);background:rgba(62,130,255,.08);border-radius:99px;padding:5px 11px;margin-bottom:12px}
+  .vdot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex:0 0 6px}
+  .warn s{color:var(--muted-dim);text-decoration-color:var(--blue)}
+  .warn{border:1px solid var(--blue);border-radius:var(--r-md);background:rgba(62,130,255,.06);padding:14px;margin:14px 0}
+  .warn b{font-family:'Space Grotesk';font-size:14px;color:#fff;display:block}
+  .warn p{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.65}
+  .warn p b{display:inline;font-family:'Inter';font-size:12.5px;color:var(--text)}
+  .swapbar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line-soft)}
+  .swapbtn{appearance:none;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:var(--r-sm);height:32px;padding:0 12px;font-family:'Inter';font-size:12.5px;font-weight:500;cursor:pointer;transition:.15s;flex:0 0 auto}
+  .swapbtn svg{width:14px;height:14px;color:var(--blue-bright)}
+  .swapbtn:hover{border-color:var(--blue);background:var(--blue-deep)}
+  .swapbtn:active{background:var(--blue);color:#fff}
+  .swapbtn:active svg{color:#fff}
+  .swapbtn:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px}
+  .swapdots{display:flex;gap:5px;align-items:center;flex:0 0 auto}
+  .swapdots i{width:6px;height:6px;border-radius:50%;background:var(--line);display:block;transition:.15s}
+  .swapdots i.on{background:var(--blue);box-shadow:0 0 7px var(--blue-glow)}
+  .swapname{font-family:'JetBrains Mono';font-size:10.5px;color:var(--muted-dim);margin-left:auto;white-space:nowrap}
+  .mealhost{display:flex;flex-direction:column}
+  .total{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--blue-deep);border:1px solid var(--blue);border-radius:var(--r-md);padding:13px 15px;flex-wrap:wrap;margin-top:2px}
+  .total .tk{font-family:'JetBrains Mono';font-weight:700;font-size:21px;line-height:1.2}
+  .total .tm{font-family:'JetBrains Mono';font-size:11.5px;color:var(--blue-bright)}
+
+  ul.clean{list-style:none;margin-top:8px}
+  ul.clean li{position:relative;padding:9px 0 9px 20px;font-size:13.5px;color:var(--text);border-top:1px solid var(--line-soft);line-height:1.55}
+  ul.clean li:first-child{border-top:0}
+  ul.clean li::before{content:"";position:absolute;left:2px;top:16px;width:6px;height:6px;border-radius:2px;background:var(--blue)}
+  ul.clean li b{color:#fff;font-weight:600}
+  ul.clean li span{color:var(--muted)}
+
+  .meal{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line-soft)}
+  .meal:first-of-type{border-top:0;padding-top:14px}
+  .meal time{font-family:'JetBrains Mono';font-size:11.5px;font-weight:700;color:var(--blue-bright);flex:0 0 66px;padding-top:2px}
+  .meal .mbody{min-width:0}
+  .meal .mbody b{font-size:14px;font-weight:600}
+  .meal .mbody p{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.55}
+
+  footer{text-align:center;color:var(--muted-dim);font-size:11px;margin-top:26px;font-family:'JetBrains Mono';letter-spacing:.04em}
+  @media (max-width:400px){
+    .ex-log{padding-left:0}
+    .macros{gap:14px}
+    .donut{flex-basis:96px;width:96px;height:96px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker"><span class="dot"></span><span class="eyebrow">Objetivo · perder grasa</span></div>
+    <h1>Panel de<br><span class="b">recomposición</span></h1>
+    <p class="sub">Tu plan de entreno y dieta en un sitio. Marca series, registra tus pesos y ajusta el déficit.</p>
+    <div class="stats">
+      <span class="chip">H · <b>38</b></span>
+      <span class="chip"><b>190</b> cm</span>
+      <span class="chip"><b>107.5</b> kg</span>
+      <span class="chip">grasa <b>~24–25%</b></span>
+      <span class="chip goal">músculo → <b>defender</b></span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <div class="seg" role="tablist" aria-label="Secciones del plan">
+      <button role="tab" id="tab-tr" aria-controls="p-tr" aria-selected="true">Entreno</button>
+      <button role="tab" id="tab-di" aria-controls="p-di" aria-selected="false">Dieta</button>
+    </div>
+  </nav>
+
+  <!-- ENTRENO -->
+  <section class="panel on" id="p-tr" role="tabpanel" aria-labelledby="tab-tr">
+    <div class="card">
+      <h2><span class="idx">01</span> Frecuencia</h2>
+      <p class="lead">PPL rotativo. Entrena los días que puedas; si fallas uno, retomas donde lo dejaste. Elige tu media semanal:</p>
+      <div class="freq" id="freq">
+        <button data-d="3">3<small>días</small></button>
+        <button data-d="4">4<small>días</small></button>
+        <button data-d="5" class="active">5<small>días</small></button>
+      </div>
+      <div class="weekstrip" id="weekstrip"></div>
+      <p class="note" id="freqnote"></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="idx">02</span> Sesiones</h2>
+      <p class="lead">Toca cada día para ver los ejercicios, marcar series y <b>registrar el peso</b>. El botón <span class="mono" style="color:var(--blue-bright)">LOG</span> guarda la carga de hoy y deja tu historial de sesiones. Descansos: 2–3 min en básicos, 60–90 s en el resto.</p>
+      <div id="sessions" style="margin-top:14px"></div>
+      <div id="storeWarn" class="warn" style="display:none">
+        <b>Aquí los pesos no se guardan al recargar</b>
+        <p>Esta vista previa bloquea el almacenamiento del navegador. Se conservan mientras no cierres la página. Para que queden grabados de verdad, abre el archivo como app en el móvil o desde el navegador (Safari/Chrome), no dentro de la vista previa.</p>
+      </div>
+      <p class="note"><span id="saveFlag" class="saveflag"></span>Tus pesos se guardan en este dispositivo — al reabrir el panel siguen aquí. Mantener cargas en déficit = músculo conservado.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="idx">03</span> Progresión y actividad</h2>
+      <ul class="clean">
+        <li><b>Doble progresión.</b> <span>Cuando llegas al tope del rango en todas las series, subes peso (~2,5–5%) y vuelves abajo del rango.</span></li>
+        <li><b>En déficit, mantener carga = ganar.</b> <span>No persigas PRs ahora; conservar tus números es el objetivo.</span></li>
+        <li><b>Pasos 8–10k/día.</b> <span>Tu mejor palanca de gasto, más fácil que sumar tiempo de gym.</span></li>
+        <li><b>Pilates/movilidad nocturno.</b> <span>Mantenlo — ataca los hombros adelantados y la postura torácica.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIETA -->
+  <section class="panel" id="p-di" role="tabpanel" aria-labelledby="tab-di">
+    <div class="card">
+      <div class="verbadge"><span class="vdot"></span>Versión 14 · guardado de pesos corregido</div>
+      <h2><span class="idx">01</span> Consola de calorías</h2>
+      <p class="lead">Mantenimiento estimado <b class="mono">~3.100 kcal</b>. Mueve el déficit para fijar tu objetivo. Debajo verás <b>lo que realmente suma el menú que has elegido</b>, y la diferencia entre ambos.</p>
+      <div class="console">
+        <div class="readout">
+          <div><span class="rlabel">Objetivo</span><span class="kcal" id="kcal">2550</span><small>kcal/día</small></div>
+          <div class="loss"><b id="loss">0,5 kg</b><span>por semana (aprox.)</span></div>
+        </div>
+        <div class="liverow">
+          <div class="lv"><span class="rlabel">Tu menú de hoy</span><b id="menuKcal">~2.400 kcal</b></div>
+          <span class="delta ok" id="delta">0 kcal</span>
+        </div>
+        <div class="sliderrow">
+          <label>Déficit diario <b><span id="defval">550</span> kcal</b></label>
+          <input type="range" id="deficit" min="300" max="700" step="50" value="550" aria-label="Déficit diario en kilocalorías" />
+          <div class="rangecap"><span>suave · 300</span><span>agresivo · 700</span></div>
+        </div>
+      </div>
+      <p class="mlabel">Macros de tu menú seleccionado</p>
+      <div class="macros">
+        <svg class="donut" viewBox="0 0 42 42" aria-hidden="true">
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#1B2130" stroke-width="6"></circle>
+          <circle id="arcP" cx="21" cy="21" r="15.9" fill="none" stroke="#6EA8FF" stroke-width="6" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+          <circle id="arcC" cx="21" cy="21" r="15.9" fill="none" stroke="#3E82FF" stroke-width="6" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+          <circle id="arcF" cx="21" cy="21" r="15.9" fill="none" stroke="#26426F" stroke-width="6" stroke-dasharray="0 100" stroke-dashoffset="25"></circle>
+        </svg>
+        <div class="mlist">
+          <div class="m"><span class="sw" style="background:#6EA8FF"></span><span class="lbl">Proteína</span><span class="g" id="gP">200 g</span><span class="pct" id="pP">31%</span></div>
+          <div class="m"><span class="sw" style="background:#3E82FF"></span><span class="lbl">Carbohidratos</span><span class="g" id="gC">246 g</span><span class="pct" id="pC">39%</span></div>
+          <div class="m"><span class="sw" style="background:#26426F"></span><span class="lbl">Grasa</span><span class="g" id="gF">85 g</span><span class="pct" id="pF">30%</span></div>
+        </div>
+      </div>
+      <p class="note">Proteína alta (~2 g/kg) para blindar músculo; la grasa se mantiene de suelo hormonal y el déficit lo absorben los hidratos. <b>Una diferencia de ±120 kcal es normal</b> — solo si el chip se pone naranja conviene cambiar de opción o ajustar el arroz o la patata.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="idx">02</span> Tu día — el mismo, entrenes o no</h2>
+      <p class="lead">Un solo menú estable: batido al levantarte, primera comida sólida a la 1, merienda y cena. Sin comida post-entreno — con el batido preentreno no es ningún hándicap aguantar hasta la comida. <b>Pesos en crudo/seco</b> para que los gestiones tú. Cada comida tiene <b>4 opciones</b> — toca «Cambiar menú». Al mover el deslizador de arriba, las <b>fuentes de hidratos se recalculan solas</b> (van marcadas en azul).</p>
+
+      <div class="shift">
+        <div class="sl"><b id="modeName">Salgo a las 17:00</b><span id="modeDesc">Merienda al llegar a casa (17:30) y cena a las 21:00.</span></div>
+        <button class="switch" id="shiftSwitch" role="switch" aria-checked="false" aria-label="Cambiar la hora de salida del trabajo"></button>
+      </div>
+
+      <div class="mealhost" id="mealhost"></div>
+
+      <div class="total"><div><div class="tk" id="totKcal">~2.400 kcal</div><div class="tm">día completo</div></div><div class="tm" id="totMac" style="text-align:right">P ~214 · C ~207 · G ~80</div></div>
+
+      <p class="note"><b>Por qué los hidratos van a la cena:</b> el glucógeno que cargas por la noche sigue en el músculo a la mañana siguiente, así que llegas al entreno de las 7:30 con el depósito lleno. La comida queda ligera en hidratos y evitas el bajón de la tarde en el trabajo.</p>
+      <p class="note"><b>Dieta estable a propósito:</b> mismas comidas todos los días, entrenes o no. El día de entreno quemas más y el de descanso menos; la media semanal es la que manda, y tú ganas en simplicidad de tuppers y compra.</p>
+      <p class="note"><b>Sin pescado — rota la proteína entre:</b> pollo, pavo, ternera magra, huevos, y lácteos <b>sin lactosa</b> (yogur griego sin lactosa). Eliminados: <s>soja texturizada</s> · <s>requesón</s> · <s>quark</s> · <s>cottage</s>.</p>
+      <div class="warn" style="margin-top:14px">
+        <b>Adaptado a intolerancia a la lactosa y colon irritable</b>
+        <p><b>Lactosa:</b> whey <b>aislada</b> (isolate), no concentrada — la concentrada lleva lactosa. Lácteos solo sin lactosa.<br>
+        <b>Bajo en FODMAP — eliminados del plan:</b> <s>repollo</s> · <s>champiñón</s> · <s>soja texturizada</s> · <s>miel</s> · <s>lomo embuchado</s> · cebolla y ajo. Ojo con fiambres y embutidos: casi todos llevan ajo.<br>
+        <b>Verduras seguras:</b> calabacín, judía verde, espinaca, zanahoria, pimiento rojo.<br>
+        <b>Hidratos suaves:</b> patata, arroz y tortitas de arroz — de lo mejor para un intestino sensible.<br>
+        <b>Solo cocinas comida y cena:</b> almuerzo y merienda son de montar y comer.<br><b>Estómago:</b> mejor repartir en 5 tomas que en 2 grandes. Si 650 g de patata te pesan, pasa parte a la merienda.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="idx">03</span> Suplementación</h2>
+      <p class="lead">Ajustada mientras el H. pylori no esté confirmado como erradicado.</p>
+      <div class="warn">
+        <b>En pausa: Wild Ripped</b>
+        <p>Preentreno estimulante con el estómago casi vacío = riesgo de irritar la mucosa. Retómalo solo si el resultado sale negativo y sin molestias. La citrulina no irrita: esa se queda.</p>
+      </div>
+      <div class="meal"><time>Mañana</time><div class="mbody"><b>Con el batido</b><p>Daily Vits · Omega 3 (1–2 cáps) · Turmeric 1 cáps · Maca Negra 3 cáps · <b style="color:var(--blue-bright)">Creatina 5 g (diaria)</b>. <b>Digezyme</b>: mejor con la comida sólida de las 13:30, no con el batido.</p></div></div>
+      <div class="meal"><time>Pre-gym</time><div class="mbody"><b>Días de entreno</b><p>Citrulina malato 6–8 g con agua. Sin Wild Ripped por ahora.</p></div></div>
+      <div class="meal"><time>Post-gym</time><div class="mbody"><b>Greens blend — a revisar</b><p>Muchos llevan <b>inulina o raíz de achicoria</b>, de los peores desencadenantes en colon irritable. Mira la etiqueta: si aparece, déjalo. No pierdes nada, es el suplemento más prescindible de tu lista.</p></div></div>
+      <div class="meal"><time>Noche</time><div class="mbody"><b>30–60 min antes de dormir · sin calcio</b><p>ZMA (con o sin Tribulus, sin duplicar ZMA) · Ashwagandha · Turmeric 2ª dosis. Si notas el estómago sensible, tómalos con algo de comida en vez de en ayunas.</p></div></div>
+      <p class="note"><b>Lo que de verdad aporta:</b> el <b style="color:var(--blue-bright)">omega 3</b> (tu única fuente de EPA/DHA al no comer pescado), la creatina y la citrulina. El resto es prescindible — y ahora mismo, cuantas menos cápsulas pase tu estómago, mejor.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="idx">04</span> Ajustes inteligentes</h2>
+      <ul class="clean">
+        <li><b>Espera 2–3 semanas antes de tocar nada.</b> <span>El peso fluctúa por agua, sal y sueño. Mide con la media semanal de peso y la cintura al ombligo.</span></li>
+        <li><b>Si la media de peso y la cintura no bajan</b> <span>→ recorta ~150–200 kcal (de arroz) o suma ~2.000 pasos. Un cambio cada vez.</span></li>
+        <li><b>Descanso de dieta cada 6–8 semanas.</b> <span>1–2 semanas a mantenimiento (~3.100). Es parte del plan.</span></li>
+        <li><b>Suelo ~2.200 kcal por ahora.</b> <span>Si necesitas más déficit, tíralo por pasos antes que por comida.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>PANEL DE RECOMPOSICIÓN · v14</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* tabs */
+  var tabs=[["tab-tr","p-tr"],["tab-di","p-di"]];
+  tabs.forEach(function(t){
+    document.getElementById(t[0]).addEventListener("click",function(){
+      tabs.forEach(function(x){
+        var sel=x[0]===t[0];
+        document.getElementById(x[0]).setAttribute("aria-selected",sel);
+        document.getElementById(x[1]).classList.toggle("on",sel);
+      });
+      window.scrollTo({top:0,behavior:"smooth"});
+    });
+  });
+
+  /* ---------- training ---------- */
+  var DAYS={
+    push:{name:"PUSH",sub:"pecho · hombro · tríceps",ex:[
+      ["Press inclinado","barra o mancuernas · prioridad pecho superior","4 × 6–8"],
+      ["Press plano","mancuerna o máquina","3 × 8–10"],
+      ["Press militar sentado","mancuerna","3 × 8–12"],
+      ["Elevaciones laterales","en polea","3 × 12–15"],
+      ["Extensión tríceps","polea, cuerda","3 × 10–12"],
+      ["Extensión sobre cabeza","tríceps","2–3 × 12–15"]
+    ]},
+    pull:{name:"PULL",sub:"espalda · deltoides post. · bíceps",ex:[
+      ["Dominadas / jalón","al pecho","4 × 6–10"],
+      ["Remo","barra o apoyado en pecho","4 × 8–10"],
+      ["Remo en polea","sentado","3 × 10–12"],
+      ["Face pulls","clave para tus hombros adelantados","3 × 15–20"],
+      ["Curl mancuerna","bíceps","3 × 10–12"],
+      ["Curl martillo","","2–3 × 12–15"]
+    ]},
+    legs:{name:"LEGS",sub:"cuádriceps · femoral · glúteo · gemelo",ex:[
+      ["Sentadilla","barra, hack o prensa","4 × 6–10"],
+      ["Peso muerto rumano","femoral y glúteo","3 × 8–10"],
+      ["Prensa / zancada","","3 × 10–12"],
+      ["Curl femoral","","3 × 12–15"],
+      ["Elevación de gemelo","","4 × 12–15"],
+      ["Abdomen","colgado o rueda · opcional","3 series"]
+    ]}
+  };
+  var WEEK={
+    3:["push","pull","legs","rest","rest","rest","rest"],
+    4:["push","pull","legs","pull","rest","rest","rest"],
+    5:["push","pull","legs","push","pull","rest","rest"]
+  };
+  var NOTES={
+    3:"Cada músculo 1×/semana. Sesiones completas: no te saltes ejercicios.",
+    4:"Torso 2×/semana. El día extra refuerza espalda, tu punto fuerte a explotar.",
+    5:"Torso 2× y piernas 1×. Máximo volumen dentro de la hora por sesión."
+  };
+
+  var done={};
+  var STORE={data:{}};
+  // Guardado: Claude storage -> localStorage -> memoria (solo sesión).
+  var MEM={};                 // respaldo en memoria
+  var STORAGE_MODE="memoria"; // se detecta al arrancar
+
+  function lsAvailable(){
+    try{
+      if(!window.localStorage) return false;
+      window.localStorage.setItem("__t","1");
+      window.localStorage.removeItem("__t");
+      return true;
+    }catch(e){ return false; }
+  }
+  function detectStorage(){
+    if(window.storage && window.storage.get && window.storage.set) STORAGE_MODE="claude";
+    else if(lsAvailable()) STORAGE_MODE="local";
+    else STORAGE_MODE="memoria";
+  }
+  function dbGet(key){
+    return Promise.resolve().then(function(){
+      if(STORAGE_MODE==="claude"){
+        return window.storage.get(key,false)
+          .then(function(r){ return r&&r.value?r.value:null; })
+          .catch(function(){ return MEM[key]||null; });
+      }
+      if(STORAGE_MODE==="local"){ try{ return window.localStorage.getItem(key); }catch(e){ return MEM[key]||null; } }
+      return MEM[key]||null;
+    }).catch(function(){ return null; });
+  }
+  function dbSet(key,val){
+    MEM[key]=val;                       // siempre, como red de seguridad
+    try{
+      if(STORAGE_MODE==="claude"){ window.storage.set(key,val,false).catch(function(){}); return true; }
+      if(STORAGE_MODE==="local"){ window.localStorage.setItem(key,val); return true; }
+    }catch(e){}
+    return STORAGE_MODE!=="memoria";
+  }
+
+  function flash(el,txt){
+    if(!el) return;
+    el.textContent=txt; el.classList.add("show");
+    clearTimeout(el._t); el._t=setTimeout(function(){ el.classList.remove("show"); },1400);
+  }
+
+  function load(){
+    return dbGet("plan_weights_v1").then(function(v){
+      if(v){ try{ STORE.data=JSON.parse(v)||{}; }catch(e){ STORE.data={}; } }
+    });
+  }
+  function persist(){
+    var ok=dbSet("plan_weights_v1",JSON.stringify(STORE.data));
+    flash(document.getElementById("saveFlag"), ok?"Guardado ✓":"Solo esta sesión");
+    return ok;
+  }
+  function rec(key,i){
+    STORE.data[key]=STORE.data[key]||{};
+    STORE.data[key][i]=STORE.data[key][i]||{w:"",hist:[]};
+    return STORE.data[key][i];
+  }
+  function ring(total,filled){
+    var pct=total?Math.round(filled/total*100):0;
+    var col=pct===100?"#3E82FF":"#6EA8FF";
+    return '<svg class="ring" viewBox="0 0 36 36" aria-hidden="true">'+
+      '<circle cx="18" cy="18" r="15" fill="none" stroke="#1B2130" stroke-width="3.5"/>'+
+      '<circle cx="18" cy="18" r="15" fill="none" stroke="'+col+'" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="'+(pct*0.942)+' 999" transform="rotate(-90 18 18)"/>'+
+      '<text x="18" y="21.5" text-anchor="middle">'+filled+'/'+total+'</text></svg>';
+  }
+  function histHtml(r){
+    if(!r.hist || !r.hist.length) return '<span class="lab">sin registro</span>';
+    var last=r.hist.slice(-4);
+    return '<span class="lab">antes</span>'+last.map(function(v,idx){
+      return '<span class="h'+(idx===last.length-1?' last':'')+'">'+v+'</span>';
+    }).join("");
+  }
+
+  var currentFreq=5;
+  function renderSessions(){
+    var canon=["push","pull","legs"].filter(function(d){return WEEK[currentFreq].indexOf(d)>=0;});
+    var host=document.getElementById("sessions");
+    var openKeys={};
+    host.querySelectorAll(".acc").forEach(function(a){ if(a.open) openKeys[a.dataset.key]=true; });
+    host.innerHTML="";
+    canon.forEach(function(key){
+      var d=DAYS[key];
+      if(!done[key]) done[key]=d.ex.map(function(){return false;});
+      var filled=done[key].filter(Boolean).length;
+      var det=document.createElement("details");
+      det.className="acc"; det.dataset.key=key; if(openKeys[key]) det.open=true;
+      det.innerHTML=
+        '<summary class="acc-head">'+ring(d.ex.length,filled)+
+          '<span class="tag">'+d.name+'<em>'+d.sub+'</em></span>'+
+          '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>'+
+        '</summary><div class="acc-body">'+
+          d.ex.map(function(e,i){
+            var isd=done[key][i]; var r=rec(key,i);
+            return '<div class="ex'+(isd?' done':'')+'" data-k="'+key+'" data-i="'+i+'">'+
+              '<div class="ex-top">'+
+                '<button class="tick" aria-pressed="'+isd+'" aria-label="Marcar '+e[0]+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></button>'+
+                '<div class="ex-name"><span>'+e[0]+'</span>'+(e[1]?'<em>'+e[1]+'</em>':'')+'</div>'+
+                '<div class="ex-load">'+e[2]+'</div>'+
+              '</div>'+
+              '<div class="ex-log">'+
+                '<div class="win"><input type="number" step="0.5" inputmode="decimal" placeholder="––" value="'+(r.w||"")+'" aria-label="Peso en kg para '+e[0]+'"><span>kg</span></div>'+
+                '<button class="logbtn" type="button">LOG</button>'+
+                '<div class="hist">'+histHtml(r)+'</div>'+
+              '</div>'+
+            '</div>';
+          }).join("")+
+        '</div>';
+      host.appendChild(det);
+    });
+
+    host.querySelectorAll(".tick").forEach(function(btn){
+      btn.addEventListener("click",function(){
+        var row=btn.closest(".ex"); var key=row.dataset.k, i=+row.dataset.i;
+        done[key][i]=!done[key][i];
+        renderSessions();
+      });
+    });
+    host.querySelectorAll(".ex").forEach(function(row){
+      var key=row.dataset.k, i=+row.dataset.i;
+      var input=row.querySelector("input");
+      function saveW(){ rec(key,i).w=input.value; persist(); }
+      input.addEventListener("input",saveW);
+      input.addEventListener("change",saveW);
+      input.addEventListener("blur",saveW);
+      row.querySelector(".logbtn").addEventListener("click",function(){
+        var r=rec(key,i); var v=(input.value||"").trim();
+        if(v===""){ input.focus(); return; }
+        r.hist.push(v); if(r.hist.length>8) r.hist=r.hist.slice(-8);
+        persist();
+        row.querySelector(".hist").innerHTML=histHtml(r);
+      });
+    });
+  }
+  function renderWeek(){
+    var labels={push:"PUSH",pull:"PULL",legs:"LEGS",rest:"·"};
+    document.getElementById("weekstrip").innerHTML=WEEK[currentFreq].map(function(d){
+      return '<span class="day-pill '+(d==="rest"?"rest":"on")+'">'+labels[d]+'</span>';
+    }).join("");
+    document.getElementById("freqnote").textContent=NOTES[currentFreq];
+  }
+  document.getElementById("freq").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    currentFreq=+b.dataset.d;
+    this.querySelectorAll("button").forEach(function(x){x.classList.toggle("active",x===b);});
+    renderWeek(); renderSessions();
+  });
+
+  /* ---------- meals ---------- */
+  // Cada alimento: n=nombre, a=cantidad, u=unidad, r=rol, macros a esa cantidad.
+  // r:"c" = fuente de hidratos → ESCALA con el deslizador de calorías.
+  // r:"p" proteína, r:"f" grasa, r:"free" verdura libre → cantidad fija.
+  var MEALS={
+    batido:[
+      {n:"Whey aislada con agua",it:[
+        {n:"Proteína whey AISLADA",a:40,u:"g",r:"p",k:148,p:34,c:1,g:1}]},
+      {n:"Whey con leche sin lactosa",it:[
+        {n:"Proteína whey aislada",a:30,u:"g",r:"p",k:111,p:25,c:1,g:1},
+        {n:"Leche sin lactosa",a:250,u:"ml",r:"p",k:110,p:8,c:12,g:3}]},
+      {n:"Whey con bebida vegetal",it:[
+        {n:"Proteína whey aislada",a:30,u:"g",r:"p",k:111,p:25,c:1,g:1},
+        {n:"Bebida de almendras sin azúcar",a:250,u:"ml",r:"p",k:38,p:1,c:1,g:3}]},
+      {n:"Whey con café",it:[
+        {n:"Proteína whey aislada",a:35,u:"g",r:"p",k:130,p:30,c:1,g:1},
+        {n:"Café solo",a:200,u:"ml",r:"p",k:5,p:0,c:0,g:0}]}
+    ],
+    postgym:[
+      {n:"Yogur con fresas",t:"dulce",it:[
+        {n:"Yogur griego SIN LACTOSA",a:200,u:"g",r:"p",k:150,p:18,c:8,g:4},
+        {n:"Fresas",a:200,u:"g",r:"p",k:64,p:1,c:15,g:0}]},
+      {n:"Yogur con plátano y canela",t:"dulce",it:[
+        {n:"Yogur griego SIN LACTOSA",a:200,u:"g",r:"p",k:150,p:18,c:8,g:4},
+        {n:"Plátano poco maduro",a:1,u:"ud",r:"p",k:105,p:1,c:27,g:0}]},
+      {n:"Bocadillo de jamón serrano",t:"salada",it:[
+        {n:"Pan de espelta (masa madre)",a:60,u:"g",r:"c",k:160,p:6,c:30,g:2},
+        {n:"Jamón serrano",a:60,u:"g",r:"p",k:115,p:18,c:0,g:5},
+        {n:"Aceite de oliva",a:5,u:"g",r:"f",k:45,p:0,c:0,g:5}]},
+      {n:"Tortitas de arroz con pavo",t:"salada",it:[
+        {n:"Tortitas de arroz",a:40,u:"g",r:"c",k:156,p:3,c:33,g:1},
+        {n:"Pechuga de pavo en lonchas",a:100,u:"g",r:"p",k:105,p:20,c:1,g:2}]}
+    ],
+    comida:[
+      {n:"Pollo con calabacín y judía verde",it:[
+        {n:"Pollo",a:300,u:"g crudo",r:"p",k:335,p:70,c:0,g:7},
+        {n:"Calabacín",a:250,u:"g",r:"free",k:42,p:3,c:6,g:1},
+        {n:"Judía verde",a:150,u:"g",r:"free",k:47,p:3,c:7,g:0},
+        {n:"Aceite de ajo (ver nota)",a:15,u:"g",r:"f",k:135,p:0,c:0,g:15}]},
+      {n:"Ternera con pimiento y espinaca",it:[
+        {n:"Ternera magra",a:275,u:"g crudo",r:"p",k:385,p:61,c:0,g:15},
+        {n:"Pimiento rojo",a:200,u:"g",r:"free",k:62,p:2,c:12,g:0},
+        {n:"Espinaca",a:150,u:"g",r:"free",k:35,p:4,c:2,g:0},
+        {n:"Aceite de ajo",a:10,u:"g",r:"f",k:90,p:0,c:0,g:10}]},
+      {n:"Pavo con zanahoria y calabacín",it:[
+        {n:"Pavo",a:300,u:"g crudo",r:"p",k:315,p:66,c:0,g:5},
+        {n:"Zanahoria",a:200,u:"g",r:"free",k:82,p:2,c:19,g:0},
+        {n:"Calabacín",a:200,u:"g",r:"free",k:34,p:2,c:5,g:0},
+        {n:"Aceite de ajo",a:15,u:"g",r:"f",k:135,p:0,c:0,g:15}]},
+      {n:"Tortilla de pavo con ensalada",it:[
+        {n:"Huevos",a:4,u:"ud",r:"p",k:288,p:25,c:0,g:20},
+        {n:"Pavo",a:150,u:"g crudo",r:"p",k:158,p:31,c:0,g:3},
+        {n:"Lechuga, tomate y pepino",a:250,u:"g",r:"free",k:40,p:2,c:7,g:0},
+        {n:"Aceite de oliva",a:10,u:"g",r:"f",k:90,p:0,c:0,g:10}]}
+    ],
+    merienda:[
+      {n:"Yogur con tortitas y cacahuete",t:"dulce",it:[
+        {n:"Yogur griego SIN LACTOSA",a:250,u:"g",r:"p",k:190,p:22,c:10,g:5},
+        {n:"Tortitas de arroz",a:50,u:"g",r:"c",k:195,p:4,c:41,g:1},
+        {n:"Crema de cacahuete",a:20,u:"g",r:"f",k:120,p:5,c:3,g:10},
+        {n:"Kiwi",a:1,u:"ud",r:"p",k:45,p:1,c:11,g:0}]},
+      {n:"Yogur con plátano y nueces",t:"dulce",it:[
+        {n:"Yogur griego SIN LACTOSA",a:300,u:"g",r:"p",k:228,p:26,c:12,g:6},
+        {n:"Plátano poco maduro",a:1,u:"ud",r:"p",k:105,p:1,c:27,g:0},
+        {n:"Tortitas de arroz",a:30,u:"g",r:"c",k:117,p:2,c:25,g:1},
+        {n:"Nueces",a:20,u:"g",r:"f",k:130,p:3,c:2,g:13}]},
+      {n:"Bocadillo de jamón serrano y tomate",t:"salada",it:[
+        {n:"Pan de espelta (masa madre)",a:100,u:"g",r:"c",k:269,p:10,c:50,g:3},
+        {n:"Jamón serrano",a:80,u:"g",r:"p",k:153,p:24,c:0,g:7},
+        {n:"Tomate",a:100,u:"g",r:"free",k:18,p:1,c:4,g:0},
+        {n:"Aceite de oliva",a:10,u:"g",r:"f",k:90,p:0,c:0,g:10}]},
+      {n:"Bocadillo de pavo y aguacate",t:"salada",it:[
+        {n:"Pan de espelta (masa madre)",a:80,u:"g",r:"c",k:215,p:8,c:40,g:2},
+        {n:"Pechuga de pavo en lonchas",a:120,u:"g",r:"p",k:126,p:24,c:2,g:2},
+        {n:"Aguacate",a:60,u:"g",r:"f",k:96,p:1,c:2,g:9},
+        {n:"Tomate",a:150,u:"g",r:"free",k:27,p:1,c:5,g:0}]}
+    ],
+    cena:[
+      {n:"Ternera con patata",it:[
+        {n:"Ternera magra",a:200,u:"g crudo",r:"p",k:280,p:44,c:0,g:11},
+        {n:"Patata",a:650,u:"g cruda",r:"c",k:500,p:13,c:112,g:0},
+        {n:"Judía verde o calabacín",a:0,u:"libre",r:"free",k:40,p:2,c:8,g:0},
+        {n:"Aceite de oliva",a:10,u:"g",r:"f",k:90,p:0,c:0,g:10}]},
+      {n:"Pollo con patata",it:[
+        {n:"Pollo",a:225,u:"g crudo",r:"p",k:250,p:52,c:0,g:5},
+        {n:"Patata",a:650,u:"g cruda",r:"c",k:500,p:13,c:112,g:0},
+        {n:"Huevo",a:1,u:"ud",r:"p",k:72,p:6,c:0,g:5},
+        {n:"Aceite de oliva",a:10,u:"g",r:"f",k:90,p:0,c:0,g:10}]},
+      {n:"Pavo con arroz",it:[
+        {n:"Pavo",a:225,u:"g crudo",r:"p",k:236,p:50,c:0,g:4},
+        {n:"Arroz blanco",a:145,u:"g seco",r:"c",k:520,p:10,c:114,g:1},
+        {n:"Verdura",a:0,u:"libre",r:"free",k:40,p:2,c:8,g:0},
+        {n:"Aceite de oliva",a:10,u:"g",r:"f",k:90,p:0,c:0,g:10}]},
+      {n:"Tortilla de patata con pavo",it:[
+        {n:"Patata",a:600,u:"g cruda",r:"c",k:462,p:12,c:103,g:0},
+        {n:"Huevos",a:3,u:"ud",r:"p",k:216,p:19,c:0,g:15},
+        {n:"Pavo",a:150,u:"g crudo",r:"p",k:158,p:31,c:0,g:3},
+        {n:"Aceite de oliva",a:10,u:"g",r:"f",k:90,p:0,c:0,g:10}]}
+    ]
+  };
+  var KEYS=["batido","postgym","comida","merienda","cena"];
+  var pick={batido:0,postgym:0,comida:0,merienda:0,cena:0};
+
+  // [hora, clave] — dos variantes según a qué hora salgas de trabajar
+  var ORDER_17=[["07:00","batido"],["09:00","postgym"],["13:30","comida"],["17:30","merienda"],["21:00","cena"]];
+  var ORDER_19=[["07:00","batido"],["09:00","postgym"],["13:30","comida"],["19:30","merienda"],["22:00","cena"]];
+  var SUBTITLE={
+    batido:"Al levantarte — algo en el estómago para entrenar",
+    postgym:"Sin cocinar — lo montas en 2 minutos al salir del gym",
+    comida:"Tupper en el trabajo — baja en hidratos, sin sopor de tarde",
+    merienda:"Sin cocinar — al llegar a casa",
+    cena:"Los hidratos aquí: cargan el depósito para el entreno de mañana"
+  };
+  var salidaTarde=false;
+
+  var BASE_CARB=246;  // hidratos del plan a déficit 550 (objetivo por defecto)
+  var curCarb=BASE_CARB;
+
+  function fmtK(n){ n=Math.round(n); return n>=1000 ? String(n).slice(0,-3)+"."+String(n).slice(-3) : String(n); }
+  function roundAmt(a,u){
+    if(u==="ud"||u==="libre") return a;
+    if(a>=200) return Math.round(a/25)*25;
+    if(a>=50)  return Math.round(a/5)*5;
+    return Math.round(a);
+  }
+
+  // Escala solo las fuentes de hidratos (rol "c") según el objetivo del deslizador
+  function scaled(item){
+    if(item.r!=="c") return {n:item.n,a:item.a,u:item.u,k:item.k,p:item.p,c:item.c,g:item.g};
+    var f=curCarb/BASE_CARB;
+    return {n:item.n,a:roundAmt(item.a*f,item.u),u:item.u,
+            k:item.k*f,p:item.p*f,c:item.c*f,g:item.g*f};
+  }
+  function mealTotals(m){
+    var t={k:0,p:0,c:0,g:0};
+    m.it.forEach(function(i){var x=scaled(i);t.k+=x.k;t.p+=x.p;t.c+=x.c;t.g+=x.g;});
+    return t;
+  }
+
+  function renderMeals(){
+    var order=salidaTarde?ORDER_19:ORDER_17;
+    document.getElementById("mealhost").innerHTML=order.map(function(o){
+      var key=o[1], opts=MEALS[key], i=pick[key], m=opts[i], t=mealTotals(m);
+      return '<div class="meal2" data-key="'+key+'">'+
+        '<div class="mh">'+
+          '<span class="mtime">'+o[0]+'</span>'+
+          '<span class="mtitle">'+m.n+(m.t?' <span class="tbadge '+m.t+'">'+m.t+'</span>':'')+'<em>'+SUBTITLE[key]+'</em></span>'+
+        '</div>'+
+        '<div class="food"><ul>'+m.it.map(function(it){
+          var x=scaled(it);
+          var q=(x.u==="libre")?"libre":(x.a+" "+x.u);
+          return '<li><span>'+x.n+'</span><span class="q'+(it.r==="c"?" flex":"")+'">'+q+'</span></li>';
+        }).join("")+'</ul></div>'+
+        '<div class="macbar">'+
+          '<span>~'+fmtK(t.k)+' kcal</span>'+
+          '<span>P <b>'+Math.round(t.p)+'</b></span><span>C <b>'+Math.round(t.c)+'</b></span><span>G <b>'+Math.round(t.g)+'</b></span>'+
+        '</div>'+
+        '<div class="swapbar">'+
+          '<button class="swapbtn" type="button" data-key="'+key+'">'+
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 2l4 4-4 4"/><path d="M3 6h18"/><path d="M7 22l-4-4 4-4"/><path d="M21 18H3"/></svg>'+
+            'Cambiar menú</button>'+
+          '<span class="swapdots">'+opts.map(function(_,j){return '<i class="'+(j===i?'on':'')+'"></i>';}).join("")+'</span>'+
+          '<span class="swapname">opción '+(i+1)+' de '+opts.length+'</span>'+
+        '</div>'+
+      '</div>';
+    }).join("");
+
+    document.querySelectorAll(".swapbtn").forEach(function(b){
+      b.addEventListener("click",function(){
+        var k=b.dataset.key;
+        pick[k]=(pick[k]+1)%MEALS[k].length;
+        persistPick(); renderMeals();
+      });
+    });
+
+    var tk=0,tp=0,tc=0,tg=0;
+    KEYS.forEach(function(k){var t=mealTotals(MEALS[k][pick[k]]);tk+=t.k;tp+=t.p;tc+=t.c;tg+=t.g;});
+    document.getElementById("totKcal").textContent="~"+fmtK(tk)+" kcal";
+    document.getElementById("totMac").textContent="P ~"+Math.round(tp)+" · C ~"+Math.round(tc)+" · G ~"+Math.round(tg);
+    updateReadout({k:tk,p:tp,c:tc,g:tg});
+
+    document.getElementById("modeName").textContent=salidaTarde?"Salgo a las 19:00":"Salgo a las 17:00";
+    document.getElementById("modeDesc").textContent=salidaTarde
+      ? "Merienda al llegar a casa (19:30) y cena más tarde."
+      : "Merienda al llegar a casa (17:30) y cena a las 21:00.";
+  }
+
+  function persistPick(){ dbSet("plan_menu_v1",JSON.stringify({pick:pick,tarde:salidaTarde})); }
+  function loadPick(){
+    return dbGet("plan_menu_v1").then(function(v){
+      if(v){ try{ var d=JSON.parse(v); if(d.pick){ KEYS.forEach(function(k){ if(typeof d.pick[k]==="number") pick[k]=d.pick[k]; }); } salidaTarde=!!d.tarde; }catch(e){} }
+    });
+  }
+
+  var sw=document.getElementById("shiftSwitch");
+  sw.addEventListener("click",function(){
+    salidaTarde=!salidaTarde;
+    sw.setAttribute("aria-checked",salidaTarde?"true":"false");
+    persistPick(); renderMeals();
+  });
+
+  /* ---------- calorie console ---------- */
+  var MAINT=3100, PROT=200, FAT=85;
+  var slider=document.getElementById("deficit");
+  function setArc(id,val,offset){var c=document.getElementById(id);c.setAttribute("stroke-dasharray",val+" "+(100-val));c.setAttribute("stroke-dashoffset",offset);}
+  // Arriba: objetivo (deslizador) + consumo REAL del menú elegido
+  function updateReadout(t){
+    var target=MAINT-(+slider.value);
+    document.getElementById("menuKcal").textContent="~"+fmtK(t.k)+" kcal";
+    var d=Math.round(t.k-target);
+    var chip=document.getElementById("delta");
+    chip.textContent=(d>0?"+":"")+d+" kcal";
+    chip.className="delta "+(Math.abs(d)<=120?"ok":(d>0?"over":"under"));
+
+    var real=t.p*4+t.c*4+t.g*9;
+    var pP=Math.round(t.p*4/real*100), pC=Math.round(t.c*4/real*100), pF=100-pP-pC;
+    document.getElementById("gP").textContent=Math.round(t.p)+" g";
+    document.getElementById("gC").textContent=Math.round(t.c)+" g";
+    document.getElementById("gF").textContent=Math.round(t.g)+" g";
+    document.getElementById("pP").textContent=pP+"%";
+    document.getElementById("pC").textContent=pC+"%";
+    document.getElementById("pF").textContent=pF+"%";
+    var off=25; setArc("arcP",pP,off); off-=pP; setArc("arcC",pC,off); off-=pC; setArc("arcF",pF,off);
+  }
+
+  function updateDiet(){
+    var def=+slider.value, target=MAINT-def, loss=def*7/7700;
+    var carbs=Math.max(60,Math.round((target-PROT*4-FAT*9)/4));
+    document.getElementById("kcal").textContent=Math.round(target/10)*10;
+    document.getElementById("defval").textContent=def;
+    document.getElementById("loss").textContent=loss.toFixed(1).replace(".",",")+" kg";
+    slider.style.setProperty("--fill",((def-300)/400*100)+"%");
+    curCarb=carbs;
+    renderMeals();   // recalcula cantidades y, al final, el consumo real de arriba
+  }
+  slider.addEventListener("input",updateDiet);
+
+  detectStorage();
+  if(STORAGE_MODE==="memoria"){ var w=document.getElementById("storeWarn"); if(w) w.style.display="block"; }
+
+  Promise.all([load(),loadPick()]).then(function(){
+    sw.setAttribute("aria-checked",salidaTarde?"true":"false");
+    renderWeek(); renderSessions(); updateDiet();
+  });
+})();
+</script>
+</body>
+</html>
